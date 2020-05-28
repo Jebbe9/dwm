@@ -3,10 +3,15 @@
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const int showbar            = 1;        /* 0 means no bar */
+static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 15;       /* vert outer gap between windows and screen edge */
+static const int smartgaps          = 1;        /* 1 means no outer gap when there is only one window */
+static const int showbar            = 0;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=10" };
-static const char dmenufont[]       = "monospace:size=10";
+static const char *fonts[]          = { "adobe-source-code-pro:size=7" };
+static const char dmenufont[]       = "adobe-source-code-pro:size=5";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -29,6 +34,9 @@ static const Rule rules[] = {
 	/* class      instance    title       tags mask     isfloating   monitor */
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "pavucontrol", NULL,    NULL,       0,            1,           -1 },
+	{ "nvidia-settings", NULL, NULL,      0,            1,           -1 },
+	{ "Steam", NULL, NULL,		      0,            1,           -1 },
 };
 
 /* layout(s) */
@@ -42,6 +50,8 @@ static const Layout layouts[] = {
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
 };
+
+#include <X11/XF86keysym.h>
 
 /* key definitions */
 #define MODKEY Mod1Mask
@@ -57,12 +67,32 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "kitty", NULL };
+static const char *firefoxcmd[] = { "firefox", NULL };
+static const char *discordcmd[] = { "discord", NULL };
+static const char *spotifycmd[] = { "spotify", NULL };
+static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+static const char *mutecmd[]  = { "pactl", "set-sink-mute", "0", "toggle", NULL };
+static const char *volupcmd[]  = { "pactl", "set-sink-volume", "0", "+5%", NULL };
+static const char *voldowncmd[]  = { "pactl", "set-sink-volume", "0", "-5%", NULL };
+static const char *playerctltoggle[] = { "playerctl", "play-pause", NULL };
+static const char *playerctlnextcmd[] = { "playerctl", "next", NULL };
+static const char *playerctlprevcmd[] = { "playerctl", "previous", NULL };
+static const char *htopcmd[] = { "kitty", "-e", "htop", NULL };
+static const char *rangercmd[] = { "kitty", "-e", "ranger", NULL };
+static const char *ttyclockcmd[] = { "kitty", "-e", "tty-clock", "-c", "-s", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ MODKEY|ShiftMask,		XK_d,      spawn,          {.v = discordcmd } },
+	{ MODKEY|ShiftMask,		XK_s,      spawn,          {.v = spotifycmd } },
+	{ MODKEY|ShiftMask,		XK_f,      spawn,          {.v = firefoxcmd } }, 
+        { 0,                            XK_Print,  spawn,          {.v = screenshotcmd } },
+	{ MODKEY|ShiftMask,		XK_h,      spawn,          {.v = htopcmd } },
+	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = rangercmd } },
+	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = ttyclockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -70,12 +100,30 @@ static Key keys[] = {
 	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+	{ MODKEY,                       XK_x,      incrgaps,       {.i = +5 } },
+	{ MODKEY,                       XK_z,      incrgaps,       {.i = -5 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_h,      incrogaps,      {.i = +1 } },
+	{ MODKEY|Mod4Mask|ShiftMask,    XK_l,      incrogaps,      {.i = -1 } },
+	{ MODKEY|Mod4Mask|ControlMask,  XK_h,      incrigaps,      {.i = +1 } },
+	{ MODKEY|Mod4Mask|ControlMask,  XK_l,      incrigaps,      {.i = -1 } },
+	{ MODKEY,                       XK_a,      togglegaps,     {0} },
+	{ MODKEY|ShiftMask,             XK_a,      defaultgaps,    {0} },
+	{ MODKEY,                       XK_y,      incrihgaps,     {.i = +1 } },
+	{ MODKEY,                       XK_o,      incrihgaps,     {.i = -1 } },
+	{ MODKEY|ControlMask,           XK_y,      incrivgaps,     {.i = +1 } },
+	{ MODKEY|ControlMask,           XK_o,      incrivgaps,     {.i = -1 } },
+	{ MODKEY|Mod4Mask,              XK_y,      incrohgaps,     {.i = +1 } },
+	{ MODKEY|Mod4Mask,              XK_o,      incrohgaps,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_y,      incrovgaps,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_o,      incrovgaps,     {.i = -1 } },
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
+	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -84,6 +132,15 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+	
+	/* Media keys */
+	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
+	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
+	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
+	{ 0, XF86XK_AudioPlay, spawn, {.v = playerctltoggle } },
+	{ 0, XF86XK_AudioPrev, spawn, {.v = playerctlprevcmd } },
+	{ 0, XF86XK_AudioNext, spawn, {.v = playerctlnextcmd } },
+	
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
@@ -93,7 +150,7 @@ static Key keys[] = {
 	TAGKEYS(                        XK_7,                      6)
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
-	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 };
 
 /* button definitions */
