@@ -37,7 +37,7 @@ static const Rule rules[] = {
 	{ "pavucontrol", NULL,    NULL,       0,            1,           -1 },
 	{ "nvidia-settings", NULL, NULL,      0,            1,           -1 },
 	{ "Steam", NULL, NULL,		      0,            1,           -1 },
-	{ "Lutris", NULL, NULL,               0,            0,           -1 },
+	{ "lutris", NULL, NULL,               0,            0,           -1 },
 };
 
 /* layout(s) */
