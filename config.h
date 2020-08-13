@@ -38,6 +38,7 @@ static const Rule rules[] = {
 	{ "nvidia-settings", NULL,  NULL,       0,            1,              0,              0,                -1 },
 	{ "Steam", NULL, NULL,		        0,            1,              0,              0,                -1 },
 	{ "kitty", NULL, NULL,			0,            0,              1,              1,                -1 },
+	{ "battle.net.exe", NULL, NULL,		0,	      1,              0,              0,                -1 },
 };
 
 /* layout(s) */
