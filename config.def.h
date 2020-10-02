@@ -38,6 +38,7 @@ static const Rule rules[] = {
 	{ "nvidia-settings", NULL,  NULL,       0,            1,              0,              0,                -1 },
 	{ "Steam", NULL, NULL,		        0,            1,              0,              0,                -1 },
 	{ "kitty", NULL, NULL,			0,            0,              1,              1,                -1 },
+	{ "battle.net.exe", NULL, NULL,		0,	      1,              0,              0,                -1 },
 };
 
 /* layout(s) */
@@ -82,6 +83,7 @@ static const char *playerctlprevcmd[] = { "playerctl", "previous", NULL };
 static const char *htopcmd[] = { "kitty", "-e", "htop", NULL };
 static const char *rangercmd[] = { "kitty", "-e", "ranger", NULL };
 static const char *ttyclockcmd[] = { "kitty", "-e", "tty-clock", "-c", "-s", NULL };
+static const char *newsboatcmd[] = { "kitty", "-e", "newsboat", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -94,6 +96,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_h,      spawn,          {.v = htopcmd } },
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = rangercmd } },
 	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = ttyclockcmd } },
+	{ MODKEY|ShiftMask,		XK_n,	   spawn,	   {.v = newsboatcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
