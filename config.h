@@ -74,21 +74,28 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+
+/* terminal */
 static const char *termcmd[]  = { "kitty", NULL };
+
+/* other apps*/
 static const char *firefoxcmd[] = { "firefox", NULL };
 static const char *discordcmd[] = { "discord", NULL };
 static const char *spotifycmd[] = { "spotify", NULL };
 static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+
+/* media */
 static const char *mutecmd[]  = { "pactl", "set-sink-mute", "0", "toggle", NULL };
 static const char *volupcmd[]  = { "pactl", "set-sink-volume", "0", "+5%", NULL };
 static const char *voldowncmd[]  = { "pactl", "set-sink-volume", "0", "-5%", NULL };
 static const char *playerctltoggle[] = { "playerctl", "play-pause", NULL };
 static const char *playerctlnextcmd[] = { "playerctl", "next", NULL };
 static const char *playerctlprevcmd[] = { "playerctl", "previous", NULL };
+
+/* unnecessary */
 static const char *htopcmd[] = { "kitty", "-e", "htop", NULL };
 static const char *rangercmd[] = { "kitty", "-e", "ranger", NULL };
 static const char *ttyclockcmd[] = { "kitty", "-e", "tty-clock", "-c", "-s", NULL };
-static const char *newsboatcmd[] = { "kitty", "-e", "newsboat", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -101,7 +108,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_h,      spawn,          {.v = htopcmd } },
 	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = rangercmd } },
 	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = ttyclockcmd } },
-	{ MODKEY|ShiftMask,		XK_n,	   spawn,	   {.v = newsboatcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
