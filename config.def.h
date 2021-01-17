@@ -93,10 +93,6 @@ static const char *playerctltoggle[] = { "playerctl", "play-pause", NULL };
 static const char *playerctlnextcmd[] = { "playerctl", "next", NULL };
 static const char *playerctlprevcmd[] = { "playerctl", "previous", NULL };
 
-/* unnecessary */
-static const char *htopcmd[] = { "kitty", "-e", "htop", NULL };
-static const char *rangercmd[] = { "kitty", "-e", "ranger", NULL };
-static const char *ttyclockcmd[] = { "kitty", "-e", "tty-clock", "-c", "-s", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -106,9 +102,6 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_s,      spawn,          {.v = spotifycmd } },
 	{ MODKEY|ShiftMask,		XK_f,      spawn,          {.v = firefoxcmd } }, 
         { 0,                            XK_Print,  spawn,          {.v = screenshotcmd } },
-	{ MODKEY|ShiftMask,		XK_h,      spawn,          {.v = htopcmd } },
-	{ MODKEY|ShiftMask,             XK_r,      spawn,          {.v = rangercmd } },
-	{ MODKEY|ShiftMask,             XK_c,      spawn,          {.v = ttyclockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
