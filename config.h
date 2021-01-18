@@ -93,6 +93,7 @@ static const char *playerctltoggle[] = { "playerctl", "play-pause", NULL };
 static const char *playerctlnextcmd[] = { "playerctl", "next", NULL };
 static const char *playerctlprevcmd[] = { "playerctl", "previous", NULL };
 
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
