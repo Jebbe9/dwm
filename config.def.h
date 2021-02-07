@@ -1,31 +1,31 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
-static const unsigned int gappih    = 5;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 5;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 5;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 5;       /* vert outer gap between windows and screen edge */
-static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
-static const int showbar            = 1;        /* 0 means no bar */
-static const int topbar             = 1;        /* 0 means bottom bar */
+static const unsigned int gappih    = 30;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 30;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 30;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static const int smartgaps          = 30;        /* 1 means no outer gap when there is only one window */
+static const int showbar            = 30;        /* 0 means no bar */
+static const int topbar             = 30;        /* 0 means bottom bar */
 static const char *fonts[]          = { "adobe-source-code-pro:size=7" };
 static const char dmenufont[]       = "adobe-source-code-pro:size=5";
 
 static const char col_grayD1[]       = "#222222";
 static const char col_grayD2[]       = "#444444";
-static const char col_grayB3[]       = "#bbbbbb";
-static const char col_grayB4[]       = "#eeeeee";
+static const char col_grayB1[]       = "#bbbbbb";
+static const char col_grayB2[]       = "#eeeeee";
 
 
 static const char col_yellow[]	    = "#eddc23";
-static const char col_redD[]	    = "#c1132d";
+static const char col_redD1[]	    = "#c1132d";
 static const char col_redD2[]	    = "#af5273";
 static const char col_purple[]	    = "#493d82";
 static const char col_blueD[]	    = "#0c399b";
 static const char col_blueB[]	    = "#2eaadb";
-static const char col_greenB[]	    = "#23d317";
+static const char col_greenB1[]	    = "#23d317";
 static const char col_greenB2[]      = "#54d8b7";
 static const char col_orange[]      = "#F47D03";
 static const char col_black[]       = "#000000";
@@ -34,18 +34,18 @@ static const char col_pinkD[]	    = "#c68baa";
 
 
 // Pinkki & valkoinen
+//static const char *colors[][3]      = {
+	///*              fg (text)  bg (behind text)  border   */
+	//[SchemeNorm] = { col_grayD2, col_white, col_black }, // Not selected
+	//[SchemeSel]  = { col_black, col_pinkD,  col_pinkD  }, // Selected
+//}; 
+
+// Purppura & musta
 static const char *colors[][3]      = {
 	/*              fg (text)  bg (behind text)  border   */
-	[SchemeNorm] = { col_grayD2, col_white, col_black }, // Not selected
-	[SchemeSel]  = { col_black, col_pinkD,  col_pinkD  }, // Selected
+	[SchemeNorm] = { col_grayB1, col_grayD1, col_black }, // Not selected
+	[SchemeSel]  = { col_grayB2, col_purple,  col_purple  }, // Selected
 };
-
-// Jotain muuta
-//static const char *colors[][3]      = {
-//	/*              fg (text)  bg (behind text)  border   */
-//	[SchemeNorm] = { col_grayD2, col_white, col_black }, // Not selected
-//	[SchemeSel]  = { col_black, col_pinkD,  col_pinkD  }, // Selected
-//};
 
 
 /* tagging */
@@ -93,7 +93,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_grayD1, "-nf", col_grayB3, "-sb", col_pinkD, "-sf", col_grayB4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_grayD1, "-nf", col_grayB1, "-sb", col_purple, "-sf", col_grayB2, NULL };
 
 /* terminal */
 static const char *termcmd[]  = { "st", NULL };
