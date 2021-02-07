@@ -12,25 +12,44 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const char *fonts[]          = { "adobe-source-code-pro:size=7" };
 static const char dmenufont[]       = "adobe-source-code-pro:size=5";
-/* background color */
-static const char col_gray1[]       = "#222222";
-/* inactive window border color */
-static const char col_gray2[]       = "#444444";
-/* font color */
-static const char col_gray3[]       = "#bbbbbb";
-/* current tag and current window font color */
-static const char col_gray4[]       = "#eeeeee";
-/* active window and top bar color */ 
-static const char col_cyan[]        = "#F47D03";
+
+static const char col_grayD1[]       = "#222222";
+static const char col_grayD2[]       = "#444444";
+static const char col_grayB3[]       = "#bbbbbb";
+static const char col_grayB4[]       = "#eeeeee";
+
+
+static const char col_yellow[]	    = "#eddc23";
+static const char col_redD[]	    = "#c1132d";
+static const char col_redD2[]	    = "#af5273";
+static const char col_purple[]	    = "#493d82";
+static const char col_blueD[]	    = "#0c399b";
+static const char col_blueB[]	    = "#2eaadb";
+static const char col_greenB[]	    = "#23d317";
+static const char col_greenB2[]      = "#54d8b7";
+static const char col_orange[]      = "#F47D03";
+static const char col_black[]       = "#000000";
+static const char col_white[]	    = "#fcfcfc";
+static const char col_pinkD[]	    = "#c68baa";
+
+
+// Pinkki & valkoinen
 static const char *colors[][3]      = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	/*              fg (text)  bg (behind text)  border   */
+	[SchemeNorm] = { col_grayD2, col_white, col_black }, // Not selected
+	[SchemeSel]  = { col_black, col_pinkD,  col_pinkD  }, // Selected
 };
+
+// Jotain muuta
+//static const char *colors[][3]      = {
+//	/*              fg (text)  bg (behind text)  border   */
+//	[SchemeNorm] = { col_grayD2, col_white, col_black }, // Not selected
+//	[SchemeSel]  = { col_black, col_pinkD,  col_pinkD  }, // Selected
+//};
 
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "" }; /*"", "", "", "" }; */
+static const char *tags[] = { "", "", "", "", "" }; 
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -43,8 +62,8 @@ static const Rule rules[] = {
 	{ "pavucontrol", NULL,      NULL,       0,            1,              0,              0,                -1 },
 	{ "nvidia-settings", NULL,  NULL,       0,            1,              0,              0,                -1 },
 	{ "Steam", NULL, NULL,		        0,            1,              0,              0,                -1 },
-	{ "kitty", NULL, NULL,			0,            0,              1,              1,                -1 },
 	{ "battle.net.exe", NULL, NULL,		0,	      1,              0,              0,                -1 },
+	{ "St", NULL, NULL,			0,	      0,              1,              0,                -1 },
 };
 
 /* layout(s) */
@@ -74,16 +93,16 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_grayD1, "-nf", col_grayB3, "-sb", col_pinkD, "-sf", col_grayB4, NULL };
 
 /* terminal */
-static const char *termcmd[]  = { "kitty", NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 /* other apps*/
 static const char *firefoxcmd[] = { "firefox", NULL };
 static const char *discordcmd[] = { "discord", NULL };
 static const char *spotifycmd[] = { "spotify", NULL };
-static const char *screenshotcmd[] = { "flameshot", "gui", NULL };
+static const char *screenshotcmd[] = { "scrot", "gui", NULL };
 
 /* media */
 static const char *mutecmd[]  = { "pactl", "set-sink-mute", "0", "toggle", NULL };
@@ -155,10 +174,6 @@ static Key keys[] = {
 	TAGKEYS(                        XK_3,                      2)
 	TAGKEYS(                        XK_4,                      3)
 	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_e,      quit,           {0} },
 };
 
