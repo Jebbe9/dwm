@@ -10,8 +10,8 @@ static const unsigned int gappov    = 30;       /* vert outer gap between window
 static const int smartgaps          = 30;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 30;        /* 0 means no bar */
 static const int topbar             = 30;        /* 0 means bottom bar */
-static const char *fonts[]          = { "adobe-source-code-pro:size=7" };
-static const char dmenufont[]       = "adobe-source-code-pro:size=5";
+static const char *fonts[]          = { "iosevka:size=14" };
+static const char dmenufont[]       = "iosevka:size=14";
 
 static const char col_grayD1[]       = "#222222";
 static const char col_grayD2[]       = "#444444";
