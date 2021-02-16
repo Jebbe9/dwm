@@ -10,8 +10,8 @@ static const unsigned int gappov    = 30;       /* vert outer gap between window
 static const int smartgaps          = 30;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 30;        /* 0 means no bar */
 static const int topbar             = 30;        /* 0 means bottom bar */
-static const char *fonts[]          = { "iosevka:size=14" };
-static const char dmenufont[]       = "iosevka:size=14";
+static const char *fonts[]          = { "Iosevka Term:size=14" };
+static const char dmenufont[]       = "Iosevka Term:size=14";
 
 static const char col_grayD1[]       = "#222222";
 static const char col_grayD2[]       = "#444444";
@@ -153,7 +153,7 @@ static Key keys[] = {
 	/* Media keys */
 	{ 0, XF86XK_AudioMute,		spawn, SHCMD("pactl set-sink-mute 0 toggle") },
 	{ 0, XF86XK_AudioLowerVolume,	spawn, SHCMD("pactl set-sink-volume 0 -5%") },
-	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("pactl set-sink volume 0 +5%") },
+	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("pactl set-sink-volume 0 +5%") },
 	{ 0, XF86XK_AudioPlay,		spawn, SHCMD("playerctl play-pause") },
 	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("playerctl previous") },
 	{ 0, XF86XK_AudioNext, 		spawn, SHCMD("playerctl next") },
