@@ -97,31 +97,19 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_grayD1, "-nf", col_grayB1, "-sb", col_purple, "-sf", col_grayB2, NULL };
 
 /* terminal */
-static const char *termcmd[]  = { "st", NULL };
-
-/* other apps*/
-static const char *firefoxcmd[] = { "firefox", NULL };
-static const char *discordcmd[] = { "discord", NULL };
-static const char *spotifycmd[] = { "spotify", NULL };
-static const char *screenshotcmd[] = { "scrot", "gui", NULL };
-
-/* media */
-static const char *mutecmd[]  = { "pactl", "set-sink-mute", "0", "toggle", NULL };
-static const char *volupcmd[]  = { "pactl", "set-sink-volume", "0", "+5%", NULL };
-static const char *voldowncmd[]  = { "pactl", "set-sink-volume", "0", "-5%", NULL };
-static const char *playerctltoggle[] = { "playerctl", "play-pause", NULL };
-static const char *playerctlnextcmd[] = { "playerctl", "next", NULL };
-static const char *playerctlprevcmd[] = { "playerctl", "previous", NULL };
-
+static const char *termcmd[] = { "st", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,		XK_d,      spawn,          {.v = discordcmd } },
-	{ MODKEY|ShiftMask,		XK_s,      spawn,          {.v = spotifycmd } },
-	{ MODKEY|ShiftMask,		XK_f,      spawn,          {.v = firefoxcmd } }, 
-        { 0,                            XK_Print,  spawn,          {.v = screenshotcmd } },
+
+	{ MODKEY|ShiftMask,		XK_d,      spawn,          SHCMD("discord") },
+	{ MODKEY|ShiftMask,		XK_s,      spawn,          SHCMD("spotify") },
+	{ MODKEY|ShiftMask,		XK_f,      spawn,          SHCMD("firefox") }, 
+        { 0,                            XK_Print,  spawn,          SHCMD("maim -s /home/jere/Pic/Scr/$(date +%F_%H:%M).png | xclip -selection clipboard -t image/png") },
+	{ MODKEY,			XK_Insert, spawn,	   SHCMD("killall slstatus && slstatus &") },
+
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -163,12 +151,12 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	
 	/* Media keys */
-	{ 0, XF86XK_AudioMute, spawn, {.v = mutecmd } },
-	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = voldowncmd } },
-	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = volupcmd } },
-	{ 0, XF86XK_AudioPlay, spawn, {.v = playerctltoggle } },
-	{ 0, XF86XK_AudioPrev, spawn, {.v = playerctlprevcmd } },
-	{ 0, XF86XK_AudioNext, spawn, {.v = playerctlnextcmd } },
+	{ 0, XF86XK_AudioMute,		spawn, SHCMD("pactl set-sink-mute 0 toggle") },
+	{ 0, XF86XK_AudioLowerVolume,	spawn, SHCMD("pactl set-sink-volume 0 -5%") },
+	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("pactl set-sink volume 0 +5%") },
+	{ 0, XF86XK_AudioPlay,		spawn, SHCMD("playerctl play-pause") },
+	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("playerctl previous") },
+	{ 0, XF86XK_AudioNext, 		spawn, SHCMD("playerctl next") },
 	
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
