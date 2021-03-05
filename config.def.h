@@ -105,7 +105,7 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 
 	{ MODKEY|ShiftMask,		XK_d,      spawn,          SHCMD("discord") },
-	{ MODKEY|ShiftMask,		XK_s,      spawn,          SHCMD("spotify") },
+	{ MODKEY|ShiftMask,		XK_s,      spawn,          SHCMD("st -e mocp") },
 	{ MODKEY|ShiftMask,		XK_f,      spawn,          SHCMD("firefox") }, 
         { 0,                            XK_Print,  spawn,          SHCMD("maim -s /home/jere/Pic/Scr/$(date +%F_%H:%M).png | xclip -selection clipboard -t image/png") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("killall slstatus && slstatus &") },
@@ -158,6 +158,11 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("playerctl previous") },
 	{ 0, XF86XK_AudioNext, 		spawn, SHCMD("playerctl next") },
 	
+	/* Moc */
+	{ 0, XF86XK_AudioPlay,		spawn, SHCMD("mocp -G") },
+	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("mocp -r") },
+	{ 0, XF86XK_AudioNext,		spawn, SHCMD("mocp -f") },
+
 	TAGKEYS(                        XK_1,                      0)
 	TAGKEYS(                        XK_2,                      1)
 	TAGKEYS(                        XK_3,                      2)
