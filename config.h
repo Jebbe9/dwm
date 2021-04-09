@@ -47,11 +47,11 @@ static const char col_pinkD[]	    = "#c68baa";
 	 //[SchemeSel]  = { col_grayB2, col_purple,  col_purple  }, // Selected
  //};
 
-// Valkonen & musta
+// Valkonen & punanen & musta
 static const char *colors[][3]	    = {
 	/*	        fg (text  bg  (behind text)  border   */	
-	[SchemeNorm] = { col_grayB1, col_grayD1, col_black }, // Not selected
-	[SchemeSel]  = { col_black, col_white,  col_white  }, // Selected
+	[SchemeNorm] = { col_grayB1, col_grayD1, col_white }, // Not selected
+	[SchemeSel]  = { col_black, col_white,  col_redD1  }, // Selected
 };
 
 
