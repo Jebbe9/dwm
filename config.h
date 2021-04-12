@@ -108,7 +108,7 @@ static const char *termcmd[] = { "st", NULL };
 
 /* scratchpad */
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x25", "-e", "mocp", NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x25", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
