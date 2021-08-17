@@ -3,15 +3,15 @@
 /* appearance */
 static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 0;       /* snap pixel */
-static const unsigned int gappih    = 20;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappih    = 20;       /* horiz inner gap between windows */ /* 20 */
+static const unsigned int gappiv    = 10;       /* vert inner gap between windows */ /*10 */
+static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */ /* 10 */
+static const unsigned int gappov    = 30;       /* vert outer gap between windows and screen edge */ /* 30 */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Iosevka Term:size=12" };
-static const char dmenufont[]       = "Iosevka Term:size=14";
+static const char *fonts[]          = { "Iosevka:size=12" };
+static const char dmenufont[]       = "Iosevka:size=14";
 
 static const char col_grayD1[]       = "#222222";
 static const char col_grayD2[]       = "#444444";
@@ -32,6 +32,8 @@ static const char col_black[]       = "#000000";
 static const char col_white[]	    = "#fcfcfc";
 static const char col_pinkD[]	    = "#c68baa";
 
+static const char col_peige[]	    = "#f3decb";
+static const char col_kahvi[]	    = "#f3c395";
 
 // Pinkki & valkoinen
 //static const char *colors[][3]      = {
@@ -43,21 +45,34 @@ static const char col_pinkD[]	    = "#c68baa";
 // Purppura & musta
  //static const char *colors[][3]      = {
 	 ///*              fg (text)  bg (behind text)  border   */
-	 //[SchemeNorm] = { col_grayB1, col_grayD1, col_black }, // Not selected
-	 //[SchemeSel]  = { col_grayB2, col_purple,  col_purple  }, // Selected
- //};
+//	[SchemeNorm] = { col_grayB1, col_grayD1, col_black }, // Not selected
+//	[SchemeSel]  = { col_grayB2, col_purple,  col_purple  }, // Selected
+//};
+
+ static const char *colors[][3]      = {
+	 ///*              fg (text)  bg (behind text)  border   */
+	[SchemeNorm] = { col_grayD1, col_peige, col_black }, // Not selected
+	[SchemeSel]  = { col_black, col_kahvi,  col_white  }, // Selected
+};
+
+ //static const char *colors[][3]      = {
+	 ///*              fg (text)  bg (behind text)  border   */
+//	[SchemeNorm] = { col_grayB1, col_grayD1, col_black }, // Not selected
+//	[SchemeSel]  = { col_grayD1, col_peige,  col_white  }, // Selected
+//};
+
 
 // Valkonen & punanen & musta
-static const char *colors[][3]	    = {
+//static const char *colors[][3]	    = {
 	/*	        fg (text  bg  (behind text)  border   */	
-	[SchemeNorm] = { col_grayB1, col_grayD1, col_white }, // Not selected
-	[SchemeSel]  = { col_black, col_white,  col_redD1  }, // Selected
-};
+//	[SchemeNorm] = { col_grayB1, col_grayD1, col_white }, // Not selected
+//	[SchemeSel]  = { col_black, col_white,  col_redD1  }, // Selected
+//};
 
 
 /* tagging */
 //static const char *tags[] = { "", "", "", "", "" }; 
-static const char *tags[] = { "I", "II", "III", "IV", "V" };
+static const char *tags[] = { "Yy", "Kaa", "Koo", "Nee", "Vii" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -72,6 +87,8 @@ static const Rule rules[] = {
 	{ "Steam", NULL, NULL,		        0,            1,              0,              0,                -1 },
 	{ "battle.net.exe", NULL, NULL,		0,	      1,              0,              0,                -1 },
 	{ "St", NULL, NULL,			0,	      0,              1,              0,                -1 },
+	{ "Fallout: New Vegas", NULL, NULL,	0,	      1,              0,              0,                -1 },
+	{ "steam_app_22380", NULL, NULL,	0,	      0,              0,              0,                -1 },
 };
 
 /* layout(s) */
@@ -122,7 +139,7 @@ static Key keys[] = {
 	/*{ MODKEY,			XK_s,      spawn,          SHCMD("st -e mocp") },*/
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
         { 0,                            XK_Print,  spawn,          SHCMD("maim -s /home/jere/Pic/Scr/$(date +%F_%H:%M).png | xclip -selection clipboard -t image/png") },
-	{ MODKEY,			XK_Insert, spawn,	   SHCMD("killall slstatus && slstatus &") },
+	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
