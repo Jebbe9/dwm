@@ -49,6 +49,7 @@ static const char col_kahvi[]	    = "#f3c395";
 //	[SchemeSel]  = { col_grayB2, col_purple,  col_purple  }, // Selected
 //};
 
+// Kahvi rice APOSJPASFOJASPOF
  static const char *colors[][3]      = {
 	 ///*              fg (text)  bg (behind text)  border   */
 	[SchemeNorm] = { col_grayD1, col_peige, col_black }, // Not selected
@@ -121,11 +122,11 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_grayD1, "-nf", col_grayB1, "-sb", col_purple, "-sf", col_grayB2, NULL };
 
 /* terminal */
-static const char *termcmd[] = { "st", NULL };
+static const char *termcmd[] = { "kitty", NULL };
 
 /* scratchpad */
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "80x25", NULL };
+static const char *scratchpadcmd[] = { "kitty", "-t", scratchpadname, "-g", "80x25", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -135,8 +136,8 @@ static Key keys[] = {
 	/*Scratchpad */
 	{ MODKEY,                       XK_w,  togglescratch,  	   {.v = scratchpadcmd } },
 
-	/*{ MODKEY,			XK_d,      spawn,          SHCMD("discord") },*/
-	/*{ MODKEY,			XK_s,      spawn,          SHCMD("st -e mocp") },*/
+	/*Muu softa */
+	{ MODKEY,			XK_Home,    spawn,          SHCMD("qbittorrent") },
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
         { 0,                            XK_Print,  spawn,          SHCMD("maim -s /home/jere/Pic/Scr/$(date +%F_%H:%M).png | xclip -selection clipboard -t image/png") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
