@@ -126,7 +126,7 @@ static const char *termcmd[] = { "kitty", NULL };
 
 /* scratchpad */
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "kitty", "-t", scratchpadname, "-g", "80x25", NULL };
+static const char *scratchpadcmd[] = { "kitty", "-e", scratchpadname, "-g", "80x25", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -137,7 +137,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_w,  togglescratch,  	   {.v = scratchpadcmd } },
 
 	/*Muu softa */
-	{ MODKEY,			XK_Home,    spawn,          SHCMD("qbittorrent") },
+	{ MODKEY,			XK_Home,   spawn,          SHCMD("qbittorrent") },
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
         { 0,                            XK_Print,  spawn,          SHCMD("maim -s /home/jere/Pic/Scr/$(date +%F_%H:%M).png | xclip -selection clipboard -t image/png") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
