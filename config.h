@@ -128,13 +128,13 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 /* terminal */
 static const char *termcmd[] = { "kitty", NULL };
 
-/* scratchpad */
+/* scratchpad */ /* st:llä -g 80x25 */
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "kitty", "-T", scratchpadname, "-g", "80x25", NULL };
+static const char *scratchpadcmd[] = { "kitty", "--title", scratchpadname, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show drun -theme gruvbox-dark-soft") }, 
 	{ MODKEY,            		XK_Return, spawn,          {.v = termcmd } },		
 
 	/*Scratchpad */
@@ -145,6 +145,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
         { 0,                            XK_Print,  spawn,          SHCMD("maim -s /home/jere/Pic/Scr/$(date +%F_%H:%M).png | xclip -selection clipboard -t image/png") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
+	{ MODKEY,			XK_Pause,  spawn,	   SHCMD("dmenuvpn") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
