@@ -143,7 +143,7 @@ static Key keys[] = {
 	/*Muu softa */
 	{ MODKEY,			XK_Home,   spawn,          SHCMD("qbittorrent") },
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
-        { 0,                            XK_Print,  spawn,          SHCMD("maim -s /home/jere/Pic/Scr/$(date +%F_%H:%M).png | xclip -selection clipboard -t image/png") },
+        { 0,                            XK_Print,  spawn,          SHCMD("flameshot gui") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
 	{ MODKEY,			XK_Pause,  spawn,	   SHCMD("dmenuvpn") },
 
