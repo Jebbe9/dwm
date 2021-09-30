@@ -88,11 +88,8 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,         NULL,       0,            1,              0,              0,                -1 },
 	{ "Firefox",  NULL,         NULL,       1 << 8,       0,              0,              0,                -1 },
 	{ "pavucontrol", NULL,      NULL,       0,            1,              0,              0,                -1 },
-	{ "nvidia-settings", NULL,  NULL,       0,            1,              0,              0,                -1 },
 	{ "Steam", NULL, NULL,		        0,            1,              0,              0,                -1 },
-	{ "battle.net.exe", NULL, NULL,		0,	      1,              0,              0,                -1 },
 	{ "St", NULL, NULL,			0,	      0,              1,              0,                -1 },
-	{ "Fallout: New Vegas", NULL, NULL,	0,	      1,              0,              0,                -1 },
 	{ "steam_app_22380", NULL, NULL,	0,	      0,              0,              0,                -1 },
 };
 
@@ -126,11 +123,11 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_grayD1, "-nf", col_grayB1, "-sb", col_purple, "-sf", col_grayB2, NULL };
 
 /* terminal */
-static const char *termcmd[] = { "kitty", NULL };
+static const char *termcmd[] = { "st", NULL };
 
 /* scratchpad */ /* st:llä -g 80x25 */
 static const char scratchpadname[] = "scratchpad";
-static const char *scratchpadcmd[] = { "kitty", "--title", scratchpadname, NULL };
+static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
