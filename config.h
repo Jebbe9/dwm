@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 0;       /* snap pixel */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 2;   /* systray spacing */
@@ -14,7 +14,7 @@ static const unsigned int gappov    = 30;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "Terminus:size=16" };
+static const char *fonts[]          = { "IBMPlexMono:size=14" };
 static const char dmenufont[]       = "Terminus:size=15";
 
 static const char col_grayD1[]       = "#222222";
@@ -32,7 +32,7 @@ static const char col_blueD[]	    = "#0c399b";
 static const char col_blueB[]	    = "#2eaadb";
 static const char col_blueB2[]	    = "#90b0ab";
 static const char col_greenB1[]	    = "#23d317";
-static const char col_greenB2[]      = "#54d8b7";
+static const char col_greenB2[]     = "#54d8b7";
 static const char col_orange[]      = "#F47D03";
 static const char col_black[]       = "#000000";
 static const char col_white[]	    = "#fcfcfc";
@@ -81,13 +81,13 @@ static const char col_solarized[]   = "#073642";
 
     static const char *colors[][3]	= {
 	/*	        fg (text  bg  (behind text)  border   */	
-	[SchemeNorm] = { col_black, col_blueB2, col_grayD2 }, // Not selected
-	[SchemeSel]  = { col_black, col_white,  col_white }, // Selected
+	[SchemeNorm] = { col_white, col_termgray, col_black }, // Not selected
+	[SchemeSel]  = { col_white, col_black,  col_white }, // Selected
  };
 
 /* tagging */
-//static const char *tags[] = { "", "", "", "", "" }; 
-static const char *tags[] = { "1", "2", "3", };
+static const char *tags[] = { "", "", "", "", "" }; 
+//static const char *tags[] = { ".", "..", "...", "IV", "V", };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -109,9 +109,9 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[T]",      tile },    /* first entry is default */
-	{ "[F]",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
+	{ "><>",      tile },    /* first entry is default */
+	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ "><>",      monocle },
 };
 
 #include <X11/XF86keysym.h>
@@ -140,7 +140,7 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show drun -theme gruvbox-dark-soft -font Terminus 20") }, 
+	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show drun -theme glue_pro_blue") },
 	{ MODKEY,            		XK_Return, spawn,          {.v = termcmd } },		
 
 	/*Scratchpad */
@@ -149,7 +149,6 @@ static Key keys[] = {
 	/*Muu softa */
 	{ MODKEY,			XK_Home,   spawn,          SHCMD("qbittorrent") },
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
-	{ MODKEY,			XK_s,      spawn,          SHCMD("st -e /home/jere/Git/ani-cli/ani-cli") },
         { 0,                            XK_Print,  spawn,          SHCMD("flameshot gui") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
 	{ MODKEY,			XK_n,      spawn,          SHCMD("st -e newsboat") },
@@ -157,6 +156,7 @@ static Key keys[] = {
 	/* Scriptit */
 	{ MODKEY,			XK_Pause,  spawn,	   SHCMD("/home/jere/.local/bin/dmenu/dmenuvpn") },
 	{ MODKEY,			XK_Delete, spawn,	   SHCMD("/home/jere/.local/bin/dmenu/dmenupower") },
+	{ MODKEY,			XK_End,    spawn,          SHCMD("/home/jere/.local/bin/dmenu/dmenubm") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
@@ -196,9 +196,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
 	
 	/* Media keys */
-	{ 0, XF86XK_AudioMute,		spawn, SHCMD("pactl set-sink-mute 0 toggle") },
-	{ 0, XF86XK_AudioLowerVolume,	spawn, SHCMD("pactl set-sink-volume 0 -5%") },
-	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("pactl set-sink-volume 0 +5%") },
+	{ 0, XF86XK_AudioMute,		spawn, SHCMD("amixer sset Master toggle") },
+	{ 0, XF86XK_AudioLowerVolume,	spawn, SHCMD("amixer sset Master 5%-")},
+	{ 0, XF86XK_AudioRaiseVolume,	spawn, SHCMD("amixer sset Master 5%+") },
 	{ 0, XF86XK_AudioPlay,		spawn, SHCMD("playerctl play-pause") },
 	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("playerctl previous") },
 	{ 0, XF86XK_AudioNext, 		spawn, SHCMD("playerctl next") },
