@@ -100,10 +100,10 @@ static Key keys[] = {
 	{ 0, XF86XK_MonBrightnessUp,	spawn, SHCMD("xbacklight -inc 20") },
 
 	
-	/* Moc */
-	{ 0, XF86XK_AudioPlay,		spawn, SHCMD("mocp -G") },
-	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("mocp -r") },
-	{ 0, XF86XK_AudioNext,		spawn, SHCMD("mocp -f") },
+	/* ncmpcpp tai mpc */
+	{ 0, XF86XK_AudioPlay,		spawn, SHCMD("mpc toggle") },
+	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("mpc prev") },
+	{ 0, XF86XK_AudioNext,		spawn, SHCMD("mpc next") },
 
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
