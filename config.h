@@ -1,27 +1,27 @@
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
-static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 5;       /* snap pixel */
 
 /* Gapit oli 24 */
-static const unsigned int gappih    = 35;       /* horiz inner gap between windows */
-static const unsigned int gappiv    = 35;       /* vert inner gap between windows */
-static const unsigned int gappoh    = 35;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 35;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappih    = 15;       /* horiz inner gap between windows */
+static const unsigned int gappiv    = 15;       /* vert inner gap between windows */
+static const unsigned int gappoh    = 15;       /* horiz outer gap between windows and screen edge */
+static const unsigned int gappov    = 15;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const int swallowfloating    = 1;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const int vertpad            = 10;       /* vertical padding of bar */
-static const int sidepad            = 10;       /* horizontal padding of bar */
-static const char *fonts[]          = { "IBMPlexMono:size=13" };
+static const int vertpad            = 0;       /* vertical padding of bar */
+static const int sidepad            = 0;       /* horizontal padding of bar */
+static const char *fonts[]          = { "mono:size=13" };
 static const char dmenufont[]       = "Terminus:size=15";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
 static const char col_gray4[]       = "#eeeeee";
-static const char col_cyan[]        = "#742323";
+static const char col_cyan[]        = "#644a57";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray1 },
@@ -42,6 +42,7 @@ static const Rule rules[] = {
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ "Ranger",  NULL,     NULL,           0,	  0,          0,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+	{ "Steam",   NULL,     NULL,           0,         1,          0,           0,        -1 },
 };
 
 /* layout(s) */
@@ -71,7 +72,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", "jetbrains-18", "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 
 /* terminal */
 static const char *termcmd[] = { "st", NULL };
@@ -79,16 +80,18 @@ static const char *termcmd[] = { "st", NULL };
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 
-	/*Softa */
+	/* cmd stuff */
 	{ MODKEY,            		XK_Return, spawn,          {.v = termcmd } },		
+	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },		
+
+	/* Software launching etc */
 	{ MODKEY,			XK_Home,   spawn,          SHCMD("qbittorrent") },
-	{ MODKEY,                       XK_p,      spawn,          SHCMD("rofi -show drun") },
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
 	{ MODKEY,			XK_s,	   spawn,	   SHCMD("st -e cmus") },
         { 0,                            XK_Print,  spawn,          SHCMD("flameshot gui") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
 
-	/* Scriptit */
+	/* Scripts */
 	{ MODKEY,			XK_Pause,  spawn,	   SHCMD("/home/jere/.local/bin/dmenu/dmenuvpn") },
 	{ MODKEY,			XK_Delete, spawn,	   SHCMD("/home/jere/.local/bin/dmenu/dmenupower") },
 	{ MODKEY,			XK_End,    spawn,          SHCMD("/home/jere/.local/bin/dmenu/dmenubm") },
@@ -101,15 +104,14 @@ static Key keys[] = {
 	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("playerctl previous") },
 	{ 0, XF86XK_AudioNext, 		spawn, SHCMD("playerctl next") },
 
-	/* Brightness */
-	{ 0, XF86XK_MonBrightnessDown,  spawn, SHCMD("xbacklight -dec 20") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn, SHCMD("xbacklight -inc 20") },
-
-	
-	/* ncmpcpp tai mpc */
+	/* Media control */
 	{ 0, XF86XK_AudioPlay,		spawn, SHCMD("mpc toggle") },
 	{ 0, XF86XK_AudioPrev,		spawn, SHCMD("mpc prev") },
 	{ 0, XF86XK_AudioNext,		spawn, SHCMD("mpc next") },
+
+	/* Brightness */
+	{ 0, XF86XK_MonBrightnessDown,  spawn, SHCMD("xbacklight -dec 20") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn, SHCMD("xbacklight -inc 20") },
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
