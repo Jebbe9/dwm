@@ -15,22 +15,22 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const char *fonts[]          = { "FiraCode-Regular:size=13" };
-static const char dmenufont[]       = "Terminus:size=19";
+static const char *fonts[]          = { "Iosevka Term Extended:size=15" };
+static const char dmenufont[]       = "Iosevka Term Extended:size=16";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
-static const char col_gray4[]       = "#000000";
-static const char col_cyan[]        = "#ffffff";
+static const char col_gray4[]       = "#eeeeee";
+static const char col_cyan[]        = "#663399";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray3 },
+	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "", "", }; 
-/*static const char *tags[] = { "1", "2", "3", "4", "5", }; */
+/*static const char *tags[] = { "", "", "", "", "", }; */
+static const char *tags[] = { "I", "II", "III", "IV", "V", };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -91,7 +91,8 @@ static Key keys[] = {
 	{ MODKEY,			XK_Home,   spawn,          SHCMD("qbittorrent") },
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
 	{ MODKEY,			XK_s,	   spawn,	   SHCMD("st -e mocp") },
-        { 0,                            XK_Print,  spawn,          SHCMD("flameshot gui") },
+	{ MODKEY,			XK_n,	   spawn,	   SHCMD("st -e newsboat") },
+        { 0,                            XK_Print,  spawn,          SHCMD("screenshot.sh") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
 	{ MODKEY,			XK_d,	   spawn,	   SHCMD("discord") },
 
