@@ -15,7 +15,7 @@ static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
 static const int vertpad            = 0;       /* vertical padding of bar */
 static const int sidepad            = 0;       /* horizontal padding of bar */
-static const char *fonts[]          = { "Iosevka Term Extended:size=15" };
+static const char *fonts[]          = { "Iosevka Term Extended:size=17" };
 static const char dmenufont[]       = "Iosevka Term Extended:size=16";
 static const char col_gray1[]       = "#000000";
 static const char col_gray2[]       = "#444444";
@@ -30,7 +30,7 @@ static const char *colors[][3]      = {
 
 /* tagging */
 /*static const char *tags[] = { "", "", "", "", "", }; */
-static const char *tags[] = { "I", "II", "III", "IV", "V", };
+static const char *tags[] = { "1", "2", "3", "4", "5", };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -92,9 +92,10 @@ static Key keys[] = {
 	{ MODKEY,			XK_f,      spawn,          SHCMD("firefox") }, 
 	{ MODKEY,			XK_s,	   spawn,	   SHCMD("st -e mocp") },
 	{ MODKEY,			XK_n,	   spawn,	   SHCMD("st -e newsboat") },
+	{ MODKEY,			XK_m,	   spawn,	   SHCMD("st -e pulsemixer") },
         { 0,                            XK_Print,  spawn,          SHCMD("screenshot.sh") },
 	{ MODKEY,			XK_Insert, spawn,	   SHCMD("pkill slstatus && slstatus &") },
-	{ MODKEY,			XK_d,	   spawn,	   SHCMD("discord") },
+	{ MODKEY,			XK_d,	   spawn,	   SHCMD("Discord") },
 
 	/* Scripts */
 	{ MODKEY,			XK_Pause,  spawn,	   SHCMD("/home/jere/.local/bin/dmenu/dmenuvpn") },
